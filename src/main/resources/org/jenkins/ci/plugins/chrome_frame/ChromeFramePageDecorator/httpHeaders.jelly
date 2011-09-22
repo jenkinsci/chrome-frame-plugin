@@ -24,7 +24,7 @@
 
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
-  <!--j:if test="${it.sendHeader}"-->
+  <j:if test="${it.sendHeader}">
     <st:header name="X-UA-Compatible" value="${it.compatible}"/>
-  <!--/j:if-->
+  </j:if>
 </j:jelly>
