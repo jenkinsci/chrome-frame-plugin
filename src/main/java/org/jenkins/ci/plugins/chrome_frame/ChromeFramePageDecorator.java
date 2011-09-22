@@ -31,7 +31,10 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 
 import hudson.Extension;
+import hudson.Util;
 import hudson.model.PageDecorator;
+
+import org.jenkins.ci.plugins.chrome_frame.Messages;
 
 /**
  * The
@@ -44,17 +47,17 @@ public final class ChromeFramePageDecorator extends PageDecorator {
   /**
    * The default value for {@link #sendHeader}.
    */
-  protected static final DEFAULT_SEND_HEADER=true;
+  protected static final boolean DEFAULT_SEND_HEADER=true;
 
   /**
    * The default value for {@link #sendMeta}.
    */
-  protected static final DEFAULT_SEND_META=true;
+  protected static final boolean DEFAULT_SEND_META=true;
 
   /**
    * The default value for {@link #sendScript}.
    */
-  protected static final DEFAULT_SEND_SCRIPT=true;
+  protected static final boolean DEFAULT_SEND_SCRIPT=true;
 
   /**
    * The default value for {@link #compatible}.
@@ -80,7 +83,7 @@ public final class ChromeFramePageDecorator extends PageDecorator {
    * What to send to the client, both in the header and the meta, for Chrome Frame compatibility.
    */
   private String compatible;
-    
+
   /**
    * Create a default Chrome Frame {@link PageDecorator}.
    */
@@ -100,7 +103,7 @@ public final class ChromeFramePageDecorator extends PageDecorator {
     this.sendScript = sendScript;
     this.compatible = Util.fixEmpty(compatible);
   }
-    
+
   @Override
   public String getDisplayName() {
     return Messages.Chrome_Frame_Plugin_DisplayName();
@@ -112,8 +115,8 @@ public final class ChromeFramePageDecorator extends PageDecorator {
     save();
     return true;
   }
-    
-  public boolean isSendHeader() { 
+
+  public boolean isSendHeader() {
     return sendHeader;
   }
 
@@ -121,7 +124,7 @@ public final class ChromeFramePageDecorator extends PageDecorator {
     this.sendHeader = sendHeader;
   }
 
-  public boolean isSendMeta() { 
+  public boolean isSendMeta() {
     return sendMeta;
   }
 
@@ -129,22 +132,22 @@ public final class ChromeFramePageDecorator extends PageDecorator {
     this.sendMeta = sendMeta;
   }
 
-  public boolean isSendScript() { 
+  public boolean isSendScript() {
     return sendScript;
   }
-  
+
   public void setSendScript(final boolean sendScript) {
     this.sendScript = sendScript;
   }
-  
-  public String getCompatible() { 
+
+  public String getCompatible() {
     return compatible;
   }
 
   public void setCompatible(final String compatible) {
     if (StringUtils.isEmpty(compatible)) {
       this.compatible = DEFAULT_COMPATIBLE;
-    }   
+    }
     else {
       this.compatible = compatible;
     }
