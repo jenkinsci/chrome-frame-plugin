@@ -24,7 +24,6 @@
 
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
-<span>footer.jelly</span>
   <j:if test="${it.sendScript}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
     <script>CFInstall.check({mode: "overlay"});</script>
