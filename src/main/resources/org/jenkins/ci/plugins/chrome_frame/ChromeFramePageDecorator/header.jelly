@@ -24,6 +24,7 @@
 
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core">
+<span>header.jelly</span>
   <j:if test="${it.sendMeta}">
     <meta http-equiv="X-UA-Compatible" content="${it.compatible}">
   </j:if>

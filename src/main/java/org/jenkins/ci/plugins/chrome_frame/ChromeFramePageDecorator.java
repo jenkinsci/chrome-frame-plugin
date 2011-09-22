@@ -24,6 +24,7 @@
 
 package org.jenkins.ci.plugins;
 
+import java.util.logging.*;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
@@ -91,12 +92,15 @@ public final class ChromeFramePageDecorator extends PageDecorator {
     this(DEFAULT_SEND_HEADER,DEFAULT_SEND_META,DEFAULT_SEND_SCRIPT, DEFAULT_COMPATIBLE);
   }
 
+private static final Logger LOG = Logger.getLogger(ChromeFramePageDecorator.class.getName());
+
   /**
    * Create a Chrome Frame {@link PageDecorator} with the specified configuration.
    */
   @DataBoundConstructor
   public ChromeFramePageDecorator(final boolean sendHeader, final boolean sendMeta, final boolean sendScript, final String compatible) {
-    super(ChromeFramePageDecorator.class);
+    super();
+LOG.info("ChromeFramePageDecorator(sendHeader=" + sendHeader +", sendMeta=" + sendMeta + ", sendScript=" + sendScript + ", compatible=" + compatible +")");
     load();
     this.sendHeader = sendHeader;
     this.sendMeta= sendMeta;
@@ -106,17 +110,20 @@ public final class ChromeFramePageDecorator extends PageDecorator {
 
   @Override
   public String getDisplayName() {
+LOG.info("getDisplayName() ? " + Messages.Chrome_Frame_Plugin_DisplayName());
     return Messages.Chrome_Frame_Plugin_DisplayName();
   }
 
   @Override
   public boolean configure(final StaplerRequest request, final JSONObject json) throws FormException {
+LOG.info("configure(request, json=" + json +")");
     request.bindJSON(this, json);
     save();
     return true;
   }
 
   public boolean isSendHeader() {
+LOG.info("isSendHeader() ? " + sendHeader);
     return sendHeader;
   }
 
@@ -125,6 +132,7 @@ public final class ChromeFramePageDecorator extends PageDecorator {
   }
 
   public boolean isSendMeta() {
+LOG.info("isSendMeta() ? " + sendMeta);
     return sendMeta;
   }
 
@@ -137,10 +145,16 @@ public final class ChromeFramePageDecorator extends PageDecorator {
   }
 
   public void setSendScript(final boolean sendScript) {
+LOG.info("isSendScript() ? " + sendScript);
     this.sendScript = sendScript;
   }
 
   public String getCompatible() {
+LOG.info("getCompatible() ? " + compatible);
+    if (StringUtils.isEmpty(compatible)) {
+      return DEFAULT_COMPATIBLE;
+    }
+
     return compatible;
   }
 
