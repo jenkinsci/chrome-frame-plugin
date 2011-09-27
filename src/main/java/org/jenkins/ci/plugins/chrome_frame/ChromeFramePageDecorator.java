@@ -38,6 +38,8 @@ import org.kohsuke.stapler.StaplerRequest;
  * Chrome Frame Plugin</a> provides <a
  * href="http://code.google.com/chrome/chromeframe/">Google Chrome Frame</a>
  * request for all pages.
+ * 
+ * @author <a href="mailto:jieryn@gmail.com">Jesse Farinacci</a>
  */
 @Extension
 public final class ChromeFramePageDecorator extends PageDecorator
